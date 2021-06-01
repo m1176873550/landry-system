@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ls.modules.sys.dao.HangingPointDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ming.ls.modules.sys.entity.HangingPoint">
+        <id column="id" property="id"/>
+        <result column="laundry_id" property="laundryId"/>
+        <result column="number" property="number"/>
+        <result column="order_id" property="orderId"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="creator_id" property="creatorId"/>
+        <result column="editor_id" property="editorId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, number, order_id, created_at, updated_at, creator_id, editor_id
+    </sql>
+
+    <select id="list"
+            parameterType="map"
+            resultType="com.ming.ls.modules.sys.vo.hangingPoint.HangingPointVo">
+        SELECT
+        hp.id id,
+        hp.number number,
+        hp.order_id orderId,
+        hp.picking_time pickingTime2,
+        hp.annex_url annexUrl,
+        hp.des des,
+        hp.is_pay isPay,
+        hp.is_back isBack,
+        hp.refund refund,
+        hp.refund_amount refundAmount,
+        hp.price price,
+        hp.created_at createdAt,
+        hp.updated_at updatedAt,
+        hp.is_finished isFinished,
+        hp.color_id colorId,
+        hp.service_types serviceTypes,
+        hp.cloth_type_id serviceType,
+        hp.brand_id brandId,
+        hp.cloth_type_id clothTypeId,
+        cust.full_name payer,
+        cust.phone phone,
+        cust.discount discount,
+        ct.NAME clothType,
+        c.NAME color,
+        b.NAME brand,
+        e.full_name editor,
+        hp.bean_took beanTook
+        FROM
+        hanging_point hp
+        LEFT JOIN clothing_type ct ON hp.cloth_type_id = ct.id
+        LEFT JOIN color c ON hp.color_id = c.id
+        LEFT JOIN brand b ON hp.brand_id = b.id
+        LEFT JOIN customer cust ON hp.payer_id = cust.id
+        LEFT JOIN employee e ON hp.editor_id =e.id
+        <where>
+            <if test="query.isAdmin!= '1'">
+                and hp.laundry_id = #{query.laundryId}
+            </if>
+            <if test="query.customerId!=null and query.customerId!=''">
+                and hp.payer_id = #{query.customerId}
+            </if>
+            <if test="query.number!=null and query.number!=''">
+                and hp.number like concat('%',#{query.number},'%')
+            </if>
+            <if test="query.orderId!=null and query.orderId!=''">
+                and hp.order_id like concat('%',#{query.orderId},'%')
+            </if>
+            <if test="query.isFinished!=null and query.isFinished!=''">
+                and hp.is_finished=#{query.isFinished}
+            </if>
+            <if test="query.beanTook!=null and query.beanTook!=''">
+                and hp.bean_took=#{query.beanTook}
+            </if>
+            <if test="query.payer!=null and query.payer!=''">
+                and cust.full_name like concat('%',#{query.fullName},'%')
+            </if>
+            <if test="query.phone!=null and query.phone!=''">
+                and cust.phone like concat('%',#{query.phone},'%')
+            </if>
+            <if test="query.isBack!=null and query.isBack!=''">
+                and hp.is_back =#{query.isBack}
+            </if>
+            <if test="query.refund!=null and query.refund!=''">
+                and hp.refund=#{query.refund}
+            </if>
+        </where>
+        <choose>
+            <when test="query.orderKey!=null and query.orderKey!='' and query.order!=null and query.order!=''">
+                order by ${query.orderKey} ${query.order}
+            </when>
+            <otherwise>
+                order by hp.updated_at desc
+            </otherwise>
+        </choose>
+
+    </select>
+    <select id="generateId" resultType="java.lang.Integer">
+        select number
+        from hanging_point
+        <where>
+            and is_finished=0
+            <if test="query.isAdmin!= '1'">
+                and laundry_id = #{query.laundryId}
+            </if>
+            order by number
+        </where>
+    </select>
+    <select id="getIncomeByDay" resultType="java.math.BigDecimal" parameterType="java.time.LocalDate">
+        SELECT
+            SUM( hp.price )
+        FROM
+            hanging_point hp
+            LEFT JOIN customer c ON hp.payer_id = c.id
+        WHERE
+            ( c.nic = NULL OR c.nic = '' )
+            AND DATE_FORMAT( hp.updated_at, '%Y-%m-%d' ) = #{localDate}
+            AND hp.is_pay =1
+    </select>
+
+    <select id="getVipIncomeByDay" resultType="java.math.BigDecimal" parameterType="java.time.LocalDate">
+        SELECT
+            SUM( amount )
+        FROM
+            vip_log
+        WHERE
+            DATE_FORMAT( created_at, '%Y-%m-%d' ) = #{localDate}
+    </select>
+</mapper>

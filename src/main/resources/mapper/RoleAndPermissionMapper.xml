@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ls.modules.sys.dao.RoleAndPermissionDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ming.ls.modules.sys.entity.RoleAndPermission">
+        <id column="id" property="id"/>
+        <result column="role_id" property="roleId"/>
+        <result column="permission_id" property="permissionId"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="creator_id" property="creatorId"/>
+        <result column="editor_id" property="editorId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, rolid, permission_id, created_at, updated_at, creator_id, editor_id
+    </sql>
+
+    <select id="getNameAndUrl" resultType="com.ming.ls.modules.sys.vo.permission.PerNameAndUrl">
+        SELECT
+        DISTINCT
+        p.url url,
+        p.name name
+        FROM
+        role_and_permission rap
+        LEFT JOIN permission p ON rap.permission_id = p.id
+        <where>
+            p.status=1 AND p.type=0
+            AND rap.role_id
+            IN
+            <foreach collection="roleIds" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </where>
+        ORDER BY p.level ASC
+    </select>
+
+    <select id="getPerIdByRoleId" resultType="string">
+        SELECT
+	        rap.permission_id permissionId
+        FROM
+	        role_and_permission rap
+	    WHERE
+	        rap.role_id=#{roleId}
+        LIMIT 1
+
+    </select>
+
+    <select id="getPermissionUrl" resultType="string">
+        SELECT
+        DISTINCT
+        p.url url
+        FROM
+        role_and_permission rap
+        LEFT JOIN permission p ON rap.permission_id = p.id
+        <where>
+            p.status = 1 AND p.type = 0
+            <if test="roleIds!=null and roleIds.size>0 ">
+                AND rap.role_id
+                IN
+                <foreach collection="roleIds" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="getPermissionCode" resultType="string">
+        SELECT
+        DISTINCT
+        p.code code
+        FROM
+        role_and_permission rap
+        LEFT JOIN permission p ON rap.permission_id = p.id
+        <where>
+            p.status = 1 AND p.type = 0
+            <if test="roleIds!=null and roleIds.size>0 ">
+                AND rap.role_id
+                IN
+                <foreach collection="roleIds" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+    <select id="getPermissionButton" resultType="string">
+        SELECT
+        DISTINCT
+        p.code code
+        FROM
+        role_and_permission rap
+        LEFT JOIN permission p ON rap.permission_id = p.id
+        <where>
+            p.status = 1 AND p.type = 1
+            <if test="roleIds!=null and roleIds.size>0 ">
+                AND rap.role_id
+                IN
+                <foreach collection="roleIds" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

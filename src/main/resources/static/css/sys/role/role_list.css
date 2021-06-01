@@ -1,0 +1,86 @@
+.addAndEdit .el-dialog {
+    width: 500px;
+}
+
+.addAndEdit .el-input__inner {
+    width: 300px;
+}
+
+body .el-table th.gutter {
+    display: table-cell !important;
+}
+
+.el-table__expand-icon--expanded .el-icon-arrow-right {
+    position: relative;
+}
+
+.el-table__expand-icon--expanded .el-icon-arrow-right::after {
+    content: "";
+    position: absolute;
+    top: -130px;
+    left: -30px;
+    right: -22px;
+    bottom: -18px;
+}
+
+.el-icon-arrow-right {
+    position: relative;
+}
+
+.el-icon-arrow-right::after {
+    content: "";
+    position: absolute;
+    top: -26px;
+    left: -15px;
+    right: -150px;
+    bottom: -10px;
+}
+
+.button-model {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 35px;
+    display: inline-block;
+    line-height: 30px;
+    border-radius: 16px;
+    padding: 0 24px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.input-button {
+    /*margin-right: 20px;*/
+}
+
+.query .el-input__suffix {
+    border-top: 0;
+    border-color: transparent;
+    border-bottom: 0;
+    background-color: transparent;
+    right: 5px;
+    top: 0px;
+    transition: all .3s;
+}
+
+.el-input-group--prepend .el-input__inner, .el-input-group__append {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: #00A2F3;
+    color: white;
+}
+.input-and-button{
+    width: 100%;
+    display: inline-block;
+}
+.el-input {
+    width: 220px;
+}
+.input-button .el-input__inner {
+    width: 180px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    height: 40px;
+    font-size: 14px;
+}
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ls.modules.sys.dao.EmployeeDao">
+
+    <!-- 通用查询映射结果 -->
+    <!--    <resultMap id="BaseResultMap" type="com.ming.ls.modules.sys.entity.Employee">-->
+    <!--        <id column="id" property="id" />-->
+    <!--        <result column="laundry_id" property="laundryId" />-->
+    <!--        <result column="id_card" property="idCard" />-->
+    <!--        <result column="e_full_name" property="fullName" />-->
+    <!--        <result column="e_phone" property="phone" />-->
+    <!--        <result column="e_is_admin" property="isAdmin" />-->
+    <!--        <result column="e_address" property="address" />-->
+    <!--        <result column="e_des" property="des" />-->
+    <!--        <result column="e_password" property="password" />-->
+    <!--        <result column="e_attachment_url" property="attachmentUrl" />-->
+    <!--        <result column="e_created_at" property="createdAt" />-->
+    <!--        <result column="e_updated_at" property="updatedAt" />-->
+    <!--        <result column="e_creator_id" property="creatorId" />-->
+    <!--        <result column="e_editor_id" property="editorId" />-->
+    <!--    </resultMap>-->
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, id_card, full_name, phone, is_admin, address, des, password, attachment_url, created_at, updated_at, creator_id, editor_id
+    </sql>
+
+    <select id="list" resultType="com.ming.ls.modules.sys.vo.employee.EmployeeListVo">
+        select
+        e.id id,
+        e.id_card idCard,
+        e.laundry_id laundryId,
+        e.full_name fullName,
+        e.login_name loginName,
+        e.phone phone,
+        e.is_admin isAdmin,
+        e.address address,
+        e.des des,
+        e.password password,
+        e.attachment_url attachmentUrl,
+        e.updated_at updatedAt,
+        e.created_at createdAt,
+        l.name laundryName
+        from employee e
+        left join
+        laundry l on e.laundry_id=l.id
+        <where>
+            <if test="query.key!= null and query.key !=''">
+                and e.full_name like concat('%',#{query.key},'%')
+            </if>
+            <if test="query.isAdmin!= null and query.isAdmin == 0">
+                <if test="query.laundryId!= null and query.laundryId.length> 0">
+                    and e.laundry_id = #{query.laundryId}
+                </if>
+            </if>
+        </where>
+        <choose>
+            <when test="query.orderKey!=null and query.orderKey!='' and query.order!=null and query.order!=''">
+                order by ${query.orderKey} ${query.order}
+            </when>
+            <otherwise>
+                order by hp.updated_at desc
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

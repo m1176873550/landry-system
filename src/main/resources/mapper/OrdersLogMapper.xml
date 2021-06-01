@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ls.modules.sys.dao.OrdersLogDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ming.ls.modules.sys.entity.OrdersLog">
+    <result column="id" property="id" />
+        <result column="amount" property="amount" />
+        <result column="des" property="des" />
+        <result column="created_at" property="createdAt" />
+        <result column="creator_id" property="creatorId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        amount, des, created_at, creator_id
+    </sql>
+
+</mapper>

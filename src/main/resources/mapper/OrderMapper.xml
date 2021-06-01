@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ls.modules.sys.dao.OrdersDao">
+
+    <!-- 通用查询映射结果 -->
+
+    <select id="list" parameterType="map" resultType="com.ming.ls.modules.sys.vo.orders.OrdersVo">
+        select distinct
+        o.id id,
+        o.laundry_id laundryId,
+        l.name laundryName,
+        o.is_pay isPay,
+        o.is_finished isFinished,
+        o.total_price totalPrice,
+        o.created_at createdAt,
+        e.full_name creator,
+        c.full_name payer,
+        c.address address,
+        c.phone phone
+        from orders o
+        left join laundry l on o.laundry_id=l.id
+        left join employee e on o.creator_id=e.id
+        left join hanging_point hp on hp.order_id=o.id
+        left join customer c on c.id=hp.payer_id
+        <where>
+            <if test="query.isAdmin == 1">
+                o.laundry_id=#{query.laundryId}
+            </if>
+            <if test="query.key != null and query.key != ''">
+                and o.id like concat('%',#{query.key},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="query.orderKey!=null and query.orderKey!='' and query.order!=null and query.order!=''">
+                order by ${query.orderKey} ${query.order}
+            </when>
+            <otherwise>
+                order by o.created_at desc
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="getDateSummary" resultType="com.ming.ls.modules.sys.vo.orders.OrdersGroupByTime">
+        SELECT
+        COUNT(1) as totalPrice,
+        SUM(CASE WHEN o.period = '9:00~11:00' THEN 1 ELSE 0 END) as one,
+        SUM(CASE WHEN o.period = '11:00~13:00' THEN 1 ELSE 0 END) as two,
+        SUM(CASE WHEN o.period = '13:00~15:00' THEN 1 ELSE 0 END) as three,
+        SUM(CASE WHEN o.period = '15:00~17:00' THEN 1 ELSE 0 END) as four,
+        SUM(CASE WHEN o.period = '17:00~19:00' THEN 1 ELSE 0 END) as five,
+        SUM(CASE WHEN o.period = '19:00~21:00' THEN 1 ELSE 0 END) as six,
+        SUM(CASE WHEN o.period = '21:00~23:00' THEN 1 ELSE 0 END) as seven
+        FROM orders o
+        WHERE o.created_at BETWEEN #{start} AND #{end}
+    </select>
+
+
+    <select id="getIncomeSummary" resultType="com.ming.ls.modules.sys.vo.orders.OrdersIncomeByTime">
+        SELECT
+            ( SELECT SUM( total_price ) FROM orders WHERE DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end} AND is_finished = 1 )
+            totalPrice,
+            MONTH ( created_at ) monthTime,
+            SUM( any_value ( total_price ) ) income
+        FROM
+            orders
+        WHERE
+            DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}
+            AND is_finished = 1
+        GROUP BY
+            monthTime
+        ORDER BY
+            monthTime
+    </select>
+    <select id="listPack" resultType="com.ming.ls.modules.sys.vo.orders.OrdersVo"
+            parameterType="java.time.LocalDate">
+        SELECT DISTINCT
+        DATE_FORMAT( hp.picking_time, '%Y-%m-%d' ) packingTime,
+        c.phone,
+        c.full_name payer,
+        o.is_remind remind
+        FROM
+        orders o
+        LEFT JOIN hanging_point hp ON o.id = hp.order_id
+        LEFT JOIN customer c ON hp.payer_id = c.id
+        WHERE
+        DATE_FORMAT( hp.picking_time, '%Y-%m-%d' )  &lt; #{day}
+        AND hp.bean_took = 0
+        ORDER BY hp.picking_time desc
+    </select>
+    <select id="listPackPhones" resultType="string"
+            parameterType="java.time.LocalDate">
+        SELECT
+        group_concat( DISTINCT c.phone SEPARATOR ',' ) phone
+        FROM
+        orders o
+        LEFT JOIN hanging_point hp ON o.id = hp.order_id
+        LEFT JOIN customer c ON hp.payer_id = c.id
+        WHERE
+        DATE_FORMAT( hp.picking_time, '%Y-%m-%d' )  &lt; #{day}
+        AND hp.bean_took = 0 AND o.is_remind=0
+    </select>
+
+    <select id="getNotRemindOrdersByPhones" resultType="com.ming.ls.modules.sys.entity.Orders">
+        SELECT DISTINCT
+            o.*
+        FROM
+            orders o
+            LEFT JOIN hanging_point hp ON o.id = hp.order_id
+            LEFT JOIN customer c ON hp.payer_id = c.id
+        <where>
+            o.is_remind = 0 AND c.phone IN
+            <if test="phones!=null and phones.size!=0">
+                <foreach collection="phones" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

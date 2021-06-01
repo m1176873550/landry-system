@@ -1,0 +1,335 @@
+/*body {*/
+/*    margin: 0 !important;*/
+/*    font-family: "Microsoft YaHei", serif !important;*/
+/*    overflow: hidden!important;*/
+/*}*/
+#left {
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 10%;
+}
+
+.left-span {
+    position: absolute;
+    /*width: 80px;*/
+    /*height: 30px;*/
+}
+
+/*.el-menu-vertical-demo .el-menu .el-menu-item{*/
+/*    !*min-width: 150px;*!*/
+/*}*/
+/*顶部长度*/
+.row-css .el-row {
+
+}
+
+/*选项菜单左*/
+.main-cascader {
+    display: inline-block;
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+ul {
+    height: 100%;
+}
+
+.el-menu.el-menu--horizontal {
+    border-bottom: solid 1px #e6e6e6;
+    height: 60.3px;
+    min-width: 1175px;
+}
+
+#query-change {
+    background-color: rgb(84, 92, 100) !important;
+    border-bottom: 0px solid rgb(84, 92, 100);
+    color: rgb(48, 49, 51) !important;
+}
+
+#right {
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 88%;
+    position: relative;
+    margin-left: 1%;
+    margin-top: 1px;
+    border-width: 1px;
+    /*overflow: hidden !important;*/
+
+
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    min-width: 150px;
+    height: 100%;
+}
+
+.no-border-iframe-class {
+    border-width: 0px;
+    overflow: hidden !important
+}
+
+/*.el-menu-vertical-demo:not(.el-menu--collapse) {*/
+/*    width: 150px;*/
+/*    overflow-y: scroll;*/
+/*    height: 200px;*/
+/*}*/
+.el-menu-item.is-active {
+    color: #409EFF;
+    width: 150px;
+    text-align: center;
+}
+
+.el-menu-item {
+    color: #409EFF;
+    width: 150px;
+    text-align: center;
+}
+
+.text {
+    font-size: 14px;
+}
+
+.item {
+    margin-bottom: 18px;
+}
+
+.clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.box-card {
+    width: 480px;
+}
+
+/*em*/
+.addAndEdit .el-dialog {
+    width: 500px;
+}
+
+.addAndEdit .el-input__inner {
+    width: 300px;
+}
+
+body .el-table th.gutter {
+    display: table-cell !important;
+}
+
+.el-table__expand-icon--expanded .el-icon-arrow-right {
+    position: relative;
+}
+
+/*.el-table__expand-icon--expanded .el-icon-arrow-right::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: -130px;*/
+/*    left: -30px;*/
+/*    right: -22px;*/
+/*    bottom: -18px;*/
+/*}*/
+
+/*.el-icon-arrow-right {*/
+/*    position: relative;*/
+/*}*/
+
+/*.el-icon-arrow-right::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: -26px;*/
+/*    left: -15px;*/
+/*    right: -150px;*/
+/*    bottom: -10px;*/
+/*}*/
+
+
+.button-model {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 35px;
+    display: inline-block;
+    line-height: 30px;
+    border-radius: 16px;
+    padding: 0 24px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.normal-button {
+    height: 40px;
+    margin-top: 2px;
+}
+
+.input-button {
+    display: inline-block;
+    margin-top: 0;
+}
+
+.dialog-input-button {
+    width: 220px !important;
+}
+
+.dialog-query-button {
+    float: right !important;
+    /*margin-right: 50px;*/
+}
+
+.dialog-input-button .el-input {
+    width: 220px !important;
+}
+
+.mid-form {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.input-button .el-input__inner {
+    /*width: 180px;*/
+    width: 100% !important;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    height: 40px;
+    font-size: 14px;
+}
+
+.el-card__header {
+    line-height: 5;
+    padding-bottom: 20px;
+}
+
+.query .el-input__suffix {
+    right: 5px;
+    top: -5px;
+    transition: all .3s;
+}
+
+.el-input-group--prepend .el-input__inner, .el-input-group__append {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: #00A2F3;
+    color: white;
+    font-size: 14px;
+}
+
+
+/*弹框*/
+.box-card {
+    width: 100%;
+}
+
+#rectangle-input-long {
+    /*margin-top: 1px;*/
+    width: 126px;
+    height: 40px;
+    border-radius: 1px;
+    /*font-size: 12px;*/
+}
+
+#rectangle-input {
+    width: 68px;
+    border-radius: 1px;
+    padding-right: 15px;
+    height: 40px;
+    /*padding-top: 3px;*/
+    /*padding-bottom: 1px;*/
+    /*font-size: 12px;*/
+}
+
+/*.el-input {*/
+/*    width: 125px;*/
+/*    margin-top: 2px;*/
+/*    font-size:14px !important;*/
+/*}*/
+.clearfix .el-input .el-input__clear {
+    /*margin-top: -4px;*/
+}
+.pwd-input.el-input input.el-input__inner{
+    width: 225px;
+}
+.input-button .el-select .el-input .el-select__caret {
+    /*margin-top: 5px;*/
+}
+
+.right-button {
+    float: right;
+    padding: 3px 0;
+}
+.right-mid-button{
+    float: right;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+.el-input .el-input--suffix {
+    width: 180px !important;
+}
+
+.second-input {
+    width: 150px;
+    display: inline-block;
+}
+
+.third-input {
+    width: 100px;
+    display: inline-block;
+}
+
+.el-input {
+    width: 150px;
+    margin-top: 2px;
+    font-size: 14px !important;
+}
+
+
+.el-menu--collapse .el-menu .el-submenu, .el-menu--popup {
+    min-width: 140px
+}
+
+.el-submenu .el-menu-item {
+    height: 50px;
+    line-height: 50px;
+    padding: 0 45px;
+    min-width: 150px;
+    /*text-align: center !important;*/
+
+}
+
+.el-menu--horizontal .el-menu-item:not(.is-disabled):focus, .el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
+    /*text-align: left !important;*/
+    /*width: 145px !important;*/
+}
+
+.el-menu--horizontal .el-menu .el-menu-item, .el-menu--horizontal .el-menu .el-submenu__title {
+    /*width: 145px;*/
+    text-align: center !important;
+}
+
+.el-menu--horizontal > .el-submenu {
+    float: left;
+    width: 150px;
+    text-align: center !important;
+}
+
+.top-line {
+    margin-bottom: 1px;
+    margin-top: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+}
+
+.el-card.is-always-shadow, .el-card.is-hover-shadow:focus, .el-card.is-hover-shadow:hover {
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, .1);
+}
+
+.el-dialog__body {
+    padding-left: 0px;
+    padding-right: 2px;
+}

@@ -1,0 +1,269 @@
+/*.body{*/
+/*    overflow: hidden!important;*/
+/*}*/
+.el-cascader-menu__wrap {
+    width: 195px;
+}
+
+.el-icon-check:before {
+    content: "\e6da";
+}
+
+.el-cascader-panel.is-bordered {
+    /*border: 1px solid #E4E7ED;*/
+    /*border-radius: 4px;*/
+    width: 178px;
+}
+
+
+/*头部菜单*/
+.main-menu {
+    top: 0px;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    left: 0;
+    height: 200px;
+}
+
+.el-menu-demo {
+    min-width: 1000px;
+}
+
+/*选项菜单左*/
+.main-cascader {
+    display: inline-block;
+    float: left;
+}
+
+/*选项菜单右*/
+.main-button {
+    /*position: fixed;*/
+    float: left;
+    margin-left: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+/*选项菜单右侧按钮*/
+.right-button {
+    float: left !important;
+    margin-top: 11px;
+}
+
+/*订单菜单*/
+.main-order {
+    position: relative;
+    /*top: 200px;*/
+}
+
+/*订单菜单下*/
+.main-bottom {
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 100%;
+}
+
+/*下左侧操作*/
+.operating-form-left {
+    display: inline-block;
+    width: 1020px;
+
+}
+
+/*下左侧输入框*/
+.el-input--suffix .el-input__inner {
+    padding-right: 30px;
+    width: 206.5px;
+}
+
+.left-span {
+    position: absolute;
+    /*width: 80px;*/
+    /*height: 30px;*/
+}
+
+.right-span {
+    position: absolute;
+    left: 1024px;
+    width: auto;
+    height: 40px;
+}
+
+.right-span-second {
+    left: 1093px !important;
+    width: 100px !important;
+}
+
+.el-form-item {
+    margin-bottom: 20px;
+}
+
+.operating-form-right {
+    width: 50px;
+    position: absolute;
+    display: inline-block;
+}
+
+.pay-button {
+    height: 99px;
+}
+
+/*下侧操作*/
+/*下侧信息*/
+.main-bottom-info {
+    display: inline-block;
+    position: absolute;
+    margin-top: 75px;
+    color: #FF0000;
+}
+
+.main-bottom-info-context {
+    display: inline-block;
+    position: relative;
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 150px;
+    overflow-y: scroll;
+    height: 200px;
+}
+
+.text .item {
+    display: inline-block;
+}
+
+.button-inline {
+    display: inline-block !important;
+    /*min-width: 1075px;*/
+    /*overflow-y:scroll;*/
+}
+
+/*搜索*/
+.clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
+
+.input-button {
+    display: inline-block;
+    margin-top: 0;
+    float: right;
+}
+
+.input-button .el-input__inner {
+    width: 180px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    height: 40px;
+    font-size: 14px;
+
+}
+
+
+.query .el-input__suffix {
+    right: 5px;
+    top: -5px;
+    transition: all .3s;
+}
+
+.el-input-group--prepend .el-input__inner, .el-input-group__append {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: #00A2F3;
+    color: white;
+    font-size: 14px;
+}
+
+/*搜索*/
+.el-input-group {
+    margin-top: 10px;
+}
+
+.el-menu-item [class^=el-icon-] {
+    color: white;
+    font-size: 14px;
+}
+
+.for-button {
+    display: inline-block;
+    width: 130px;
+    margin: 5px 5px 5px 0;
+}
+
+.el-button + .el-button {
+    margin: 5px 5px 5px 0;
+}
+
+.main-orders {
+
+}
+
+/*表格编辑*/
+.el-table td, .el-table th.is-leaf {
+    border-bottom: 1px solid #EBEEF5;
+    /*border-right-width: 1px;*/
+}
+
+.tb-edit .input-box {
+    display: none
+}
+
+.tb-edit .current-cell .input-box {
+    display: block;
+    margin-left: -15px;
+}
+
+/*结账按钮*/
+.relation-button {
+    position: relative;
+    display: inline-block;
+}
+
+.el-input-number__decrease, .el-input-number__increase {
+    height: 38px;
+}
+
+.el-icon-minus, .el-icon-plus {
+    line-height: 3 !important;
+}
+
+.query .el-input__suffix {
+    right: 5px;
+    transform: translateX(-72px);
+    top: 0;
+    transition: all .3s;
+    line-height: 50px;
+}
+
+.query {
+    padding-bottom: 10px;
+    height: 30px;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.el-form-item__content .el-checkbox {
+    margin-top: 11px;
+    font-size: 14px;
+}
+
+.el-form-item__content .el-checkbox .el-checkbox__input {
+    margin-bottom: 2px;
+}
+
+/*是否付款选框*/
+.surePay .el-checkbox__label {
+    color: red !important;
+}
+
+.surePay .el-checkbox__inner {
+    border: 1px solid #f56c6c !important;
+}
+.surePay{
+    margin-left:16px;
+}

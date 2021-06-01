@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ls.modules.sys.dao.EmployeeAndRoleDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ming.ls.modules.sys.entity.EmployeeAndRole">
+        <id column="id" property="id" />
+        <result column="employee_id" property="employeeId" />
+        <result column="role_id" property="roleId" />
+        <result column="created_at" property="createdAt" />
+        <result column="updated_at" property="updatedAt" />
+        <result column="creator_id" property="creatorId" />
+        <result column="editor_id" property="editorId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ear_id, employe_id, role_id, created_at, updated_at, creator_id, editor_id
+    </sql>
+    <select id="getRoleIdByEmpId" resultType="java.lang.String">
+        select role_id
+        from employee_and_role
+        where employee_id=#{employeeId}
+    </select>
+</mapper>

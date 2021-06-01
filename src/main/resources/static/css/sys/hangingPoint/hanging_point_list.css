@@ -1,0 +1,117 @@
+.el-cascader .el-input .el-input__inner {
+}
+.el-dropdown-menu{
+    width: 100px;
+    text-align: center;
+}
+.addAndEdit .el-dialog {
+    width: 500px;
+}
+.select-button{
+    padding-top: 10px;
+    height: 35px;
+    padding-bottom: 10px;
+    /*position: absolute;*/
+    top: 50%;
+    /*transform: translateY(-50%);*/
+    display: inline-block;
+    /*line-height: 30px;*/
+    border-radius: 16px;
+    font-size: 14px;
+    color: #fff;
+}
+.addAndEdit .el-input__inner {
+    width: 300px;
+}
+
+body .el-table th.gutter {
+    display: table-cell !important;
+}
+
+.el-table__expand-icon--expanded .el-icon-arrow-right {
+    position: relative;
+}
+
+.el-table__expand-icon--expanded .el-icon-arrow-right::after {
+    content: "";
+    position: absolute;
+    top: -130px;
+    left: -30px;
+    right: -22px;
+    bottom: -18px;
+}
+
+.el-icon-arrow-right {
+    position: relative;
+}
+
+.el-icon-arrow-right::after {
+    content: "";
+    position: absolute;
+    top: -26px;
+    left: -15px;
+    right: -150px;
+    bottom: -10px;
+}
+
+/*清除按钮*/
+.el-input .el-input__clear:hover {
+    /*margin-top: 6px;*/
+}
+
+.normal-button {
+    height: 40px;
+    width: 71px;
+}
+
+.input-button {
+    /*margin-bottom: 20px;*/
+}
+
+.query .el-input__suffix {
+    right: 5px;
+    top: 0px;
+    transition: all .3s;
+}
+
+.el-input-group--prepend .el-input__inner, .el-input-group__append {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: #00A2F3;
+    color: white;
+}
+
+.right-button {
+    float: right;
+    display: inline-block;
+}
+
+.el-form-item__content {
+    width: 60%;
+}
+
+.el-row .el-input__inner {
+    width: 189px;
+}
+.price-input .el-input__inner{
+    width: 221px!important;
+}
+/*弹窗顶部侧信息*/
+.main-bottom-info {
+    display: inline-block;
+    position: relative;
+    /*margin-top: 75px;*/
+    color: #FF0000;
+}
+
+.main-bottom-info-context, .main-bottom-info-context-nic {
+    display: inline-block;
+    position: relative;
+}
+
+.main-bottom-info-context-nic .el-form-item .el-form-item__content{
+    width: 185px;
+}
+.el-form-item__error{
+    width: 220px;
+}

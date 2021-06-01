@@ -1,0 +1,135 @@
+.content {
+    width: 1086px;
+    height: 509px;
+    margin: 0 auto; /*水平居中*/
+    position: relative;
+    top: 50%; /*偏移*/
+    transform: translateY(-50%);
+}
+.myImg{
+    width: 688px;
+    height: 362px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.myForm{
+    position: absolute;
+    /* float: right; */
+    right: 0;
+    top: 60%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 509px;
+    text-align: center;
+    /* vertical-align: middle; */
+}
+.myLogo{
+    width: 71px;
+    height: 71px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.myFont{
+    width: 100%;
+    position: absolute;
+    top: 91px;
+    font-size: 36px;
+    color: #399cff;
+}
+.MyFormDiv{
+    width: 300px;
+    height: 190px;
+    position: absolute;
+    top: 175px;
+}
+.el-checkbox__label {
+    display: inline-block;
+    padding-left: 0px;
+    line-height: 12px;
+    font-size: 12px;
+    color: #a0c4e7;
+}
+.el-button--primary {
+    color: #FFF;
+    background-color: #3a9dfe;
+    border-color: #3a9dfe;
+}
+.MyLoginButton{
+    font-size: 18px;
+    width: 300px;
+    height: 40px
+}
+
+
+
+
+
+.maindiv{
+    width:300px;
+    height: 40px;
+    overflow:hidden; /*关键*/
+    border:1px solid #a0c4e7;
+    border-radius: 60px;
+}
+.el-button--mini, .el-button--small {
+    font-size: 15px;
+    border-radius: 3px;
+}
+.password{
+    margin: 6px -24px 0px 15px;
+    float:left;
+    width:65px;
+    height: 26px;
+    background: url("/static/images/login/passworddefault.png") no-repeat;
+    background-size: 30px 30px;
+}
+.userName{
+    margin: 6px -24px 0px 15px;
+    float:left;
+    width:65px;
+    height: 26px;
+    background: url("/static/images/login/IDdefault.png") no-repeat;
+    background-size: 30px 30px;
+}
+.rightdiv .el-input__inner {
+    -webkit-appearance: none;
+    background-color: #FFF;
+    background-image: none;
+    border-radius: 4px;
+    border: 0px solid #DCDFE6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #a0c4e7;
+    display: inline-block;
+    font-size: 12px;
+    height: 45px;
+    line-height: 40px;
+    outline: 0;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 330px;
+    margin-top:-18px;
+    padding-left: 0px;
+    padding-right: 120px;
+}
+.rightdiv{
+    margin-top:17px;
+    float:left;
+    width:220px;
+    height: 26px;
+
+}
+
+.centerdiv {
+    margin-top: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    padding-top: 14px;
+    float: left;
+    width: 5px;
+    border-right: 1px solid #c6d1e5;
+}

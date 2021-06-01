@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ming.ls.modules.sys.dao.CustomerDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ming.ls.modules.sys.entity.Customer">
+        <id column="id" property="id"/>
+        <result column="laundry_id" property="laundryId"/>
+        <result column="phone" property="phone"/>
+        <result column="nic" property="nic"/>
+        <result column="discount" property="discount"/>
+        <result column="full_name" property="fullName"/>
+        <result column="pass" property="password"/>
+        <result column="address" property="address"/>
+        <result column="des" property="des"/>
+        <result column="birthday" property="birthday"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="creator_id" property="creatorId"/>
+        <result column="editor_id" property="editorId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, phone, nic, discount, full_name, password, address, des, birthday, created_at, updated_at, creator_id, editor_id
+    </sql>
+
+    <!--    <select id="list" parameterType="map" resultType="com.ming.ls.modules.sys.vo.customer.CustomerVo">-->
+
+
+    <select id="nameAndPhone" resultType="com.ming.ls.modules.sys.vo.customer.CustomerNameAndPhone">
+        select full_name value, phone phone
+        from customer
+        where laundry_id=#{query.laundryId}
+    </select>
+
+    <select id="notUsedMoneySum" resultType="com.ming.ls.modules.sys.vo.orders.OrdersIncomeByTime">
+        SELECT
+        SUM(balance) totalPrice,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=1 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN
+        #{start} AND #{end}) one,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=2 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) two,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=3 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) three,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=4 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) four,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=5 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) five,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=6 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) six,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=7 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) seven,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=8 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) eight,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=9 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) nine,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=10 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) ten,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=11 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) eleven,
+        (SELECT SUM(balance) FROM customer WHERE MONTH(created_at)=12 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) twelve
+        FROM customer
+        WHERE
+            DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}
+    </select>
+    <select id="vipMoneySum" resultType="com.ming.ls.modules.sys.vo.orders.OrdersIncomeByTime">
+        SELECT
+        SUM(amount) totalPrice,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=1 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) one,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=2 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) two,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=3 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) three,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=4 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) four,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=5 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) five,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=6 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) six,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=7 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) seven,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=8 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) eight,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=9 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) nine,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=10 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) ten,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=11 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) eleven,
+        (SELECT SUM(amount) FROM vip_log WHERE MONTH(created_at)=12 AND DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}) twelve
+        FROM vip_log
+        WHERE
+            DATE_FORMAT( created_at, '%Y-%m' ) BETWEEN #{start} AND #{end}
+    </select>
+    <select id="birthVipList" resultType="com.ming.ls.modules.sys.vo.customer.CustomerVo"
+            parameterType="java.time.LocalDate">
+        select *,is_remind remind from customer
+        where birthday=#{day} or birthday=#{daySubOne} or birthday = #{daySubTwo}
+        order by birthday desc
+    </select>
+    <select id="listBirthVipPhones" resultType="string"
+            parameterType="java.time.LocalDate">
+        SELECT
+            group_concat( DISTINCT phone SEPARATOR ',' ) phone
+        FROM
+            customer
+        WHERE
+            (birthday = birthday=#{day} or birthday=#{daySubOne} or birthday = #{daySubTwo}) and is_remind=0
+        GROUP BY
+            is_remind
+    </select>
+
+</mapper>
